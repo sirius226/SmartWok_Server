@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart Cooking</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; width=device-width" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.theme-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.icons-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.structure-1.4.3.min.css')}}" type="text/css" />
+    <script src="static/js/jquery-1.11.1.min.js"></script>
+    <script src="static/js/jquery.mobile-1.4.3.min.js"></script>
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/styles.css')}}" type="text/css" />
+</head>
+<body>
+	<div data-role="page" id="page7" data-title="Favorite" data-url="{{ url_for('favorite') }}" data-theme="e" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;">
+		<div data-role="header" data-theme="a" data-fullscreen="false" data-position="" data-tap-toggle="true" data-track-persistent-toolbars="true">
+			<a class="ui-btn-auto" data-theme="b" data-icon="bars" data-iconpos="notext" data-transition="none" href="#page3">Button</a>
+			<div style="background-repeat:repeat repeat;height:40px;text-align:center;overflow:hidden;float:$float">
+				<a href="">
+					<img src="{{url_for('static',filename = 'images/icon.png')}}" style="height:40px;text-align:center;margin:0px;padding:0px;"/>
+				</a>
+			</div>
+		</div>
+		<!--start content-->
+		<div role="main" class="ui-content" style="margin:0px;padding:1em;">
+
+			<ul data-role="listview" data-split-icon="heart" data-split-theme="a" data-inset="true">
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/BwB.png')}}">
+					<h2>Beef with Brocolli</h2>
+					</a>
+					<a href="#purchase" >Purchase album</a>
+				</li>
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/PSwO.png')}}">
+					<h2>Sweat and Sour Pork</h2>
+					</a>
+					<a href="#purchase" >Purchase album</a>
+				</li>
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/SSP.png')}}">
+					<h2>Sweat and Sour Pork</h2>
+					</a>
+					<a href="#purchase" >Purchase album</a>
+				</li>
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/SwL.png')}}">
+					<h2>Shrimp with Lobster Sauce</h2>
+					</a>
+					<a href="#purchase">Purchase album</a>
+				</li>
+			</ul>
+			<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h3>Purchase Album?</h3>
+				<p>Your download will begin immediately on your mobile device when you purchase.</p>
+				<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini">Buy: $10.99</a>
+				<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a>
+			</div>
+
+			<!-- <ul data-role="listview" data-inset="true">
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/BwB.png')}}">
+					<h2>Broken Bells</h2>
+					<p>Broken Bells</p></a>
+				</li>
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/PSwO.png')}}">
+					<h2>Warning</h2>
+					<p>Hot Chip</p></a>
+				</li>
+				<li><a href="#">
+					<img src="{{url_for('static',filename = 'images/SSP.png')}}">
+					<h2>Wolfgang Amadeus Phoenix</h2>
+					<p>Phoenix</p></a>
+				</li>
+			</ul> -->
+
+		</div>
+
+		<!--end content-->
+		<div data-role="panel" id="page3" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;" data-theme="a" data-animate="false" data-display="reveal" data-position="left">
+			<div class="ui-body ui-body-e " style="margin:auto;padding:0px;background-repeat:repeat repeat;">
+				<div style="overflow:auto">
+					<div style="float:left;min-height:1px;width:30%;margin:0px;padding:0px;">
+						<a class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-notext" name="text-user" id="text-user" data-inline="true" href="http://{{server_ip}}:5000/account">User</a><!--href="index.html"-->
+					</div>
+					<div style="float:left;;min-height:1px;width:70%;margin:0px;padding:0px;">
+						<div style="text-align:left;color:#fa6800;font-size:xx-large;font-weight:normal;font-style:normal;margin:0px;padding:0px;">{{user.nickname}}</div>
+					</div>
+				</div>
+				<ul data-role="listview">
+					<li><a href = "http://{{server_ip}}:5000/menu">Chef Today</a></li>
+					<li><a href = "#">Pot Status</a></li>
+					<li><a href = "#">Shop Nearby</a></li>
+					<li><a href = "#">My Favorite</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

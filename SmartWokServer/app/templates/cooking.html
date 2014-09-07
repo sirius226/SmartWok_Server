@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart Cooking</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; width=device-width" />
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile-1.4.3.min.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.theme-1.4.3.min.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.icons-1.4.3.min.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.structure-1.4.3.min.css')}}" type="text/css" />
+	<script src="static/js/jquery-1.11.1.min.js"></script>
+	<script src="static/js/jquery.mobile-1.4.3.min.js"></script>
+	<link rel="stylesheet" href="{{url_for('static',filename = 'css/styles.css')}}" type="text/css" />
+
+	<script type="text/javascript">
+	dateFuture11 = new Date();
+	timer = dateFuture11.getTime()+180000;
+	dateFuture1 = new Date(timer);
+
+	function GetCount(ddate,iid){
+
+		dateNow = new Date();
+		amount = ddate.getTime() - dateNow.getTime();
+		delete dateNow;
+
+		if(amount < 0){
+			document.getElementById(iid).innerHTML="Now!";
+		}
+		else{
+			mins=0;secs=0;out="";
+
+			amount = Math.floor(amount/1000);
+
+			mins=Math.floor(amount/60);
+			amount=amount%60;
+
+			secs=Math.floor(amount);
+
+			out += mins +" "+((mins==1)?"min":"mins")+", ";
+			out += secs +" "+((secs==1)?"sec":"secs")+", ";
+			out = out.substr(0,out.length-2);
+			document.getElementById(iid).innerHTML=out;
+
+			setTimeout(function(){GetCount(ddate,iid)}, 1000);
+		}
+	}
+
+	window.onload=function(){
+		GetCount(dateFuture1, 'countbox1');
+	};
+	</script>
+</head>
+<body>
+	<div data-role="page" id="page5" data-title="Cooking" data-url="{{ url_for('cooking') }}" data-theme="e" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;">
+		<div data-role="header" data-theme="a" data-fullscreen="false" data-position="" data-tap-toggle="true" data-track-persistent-toolbars="true">
+			<a class="ui-btn-auto" data-theme="b" data-icon="bars" data-iconpos="notext" data-transition="none" href="#page3">Button</a>
+			<div style="background-repeat:repeat repeat;height:40px;text-align:center;overflow:hidden;float:$float">
+				<a href="">
+					<img src="{{url_for('static',filename = 'images/icon.png')}}" style="height:40px;text-align:center;margin:0px;padding:0px;"/>
+				</a>
+			</div>
+		</div>
+		<!--start content-->
+		<div role="main" class="ui-content" style="margin:0px;padding:1em;">
+			
+			<div class="ui-corner-all custom-corners">
+				<div class="ui-bar ui-bar-a">
+					<div style="text-align:center;">
+						<h3>{{meal}}</h3>
+					</div>
+				</div>
+				<div class="ui-body ui-body-a">
+					<img src="/static/images/{{mealname}}.png" style="width:100%;text-align:center;margin:0px;padding:0px;"/>
+					<li data-role="collapsible" data-iconpos="right" data-shadow="false" data-corners="false">
+						<h2>Nutrition Facts</h2>
+						<p id="demo"></p>
+						<ul data-role="listview" data-shadow="false" data-inset="true" data-corners="false">
+							<img name = "nutrition-facts" src="/static/images/{{mealname}}_Nutrition.png" style="width:70%;text-align:center;margin:0px;padding:0px;"/>
+						</ul>
+					</li>
+					
+				</div>
+			</div>
+			<div style="overflow:auto">
+				<div style="float:left;min-height:1px;width:50%;margin:0px;padding:0px;">
+					{% if cookingIdx<2 %}
+					<form action="{{ url_for('cooking') }}" method=post>
+						<input type="submit" id = "preheating" name = "command"data-theme="e" data-corners="true" data-inline="false" data-mini="true" data-shadow="true" data-transition="none" value="preheating">
+					</form>
+					{% elif cookingIdx==2 %}
+					<font size="3">Preheating time remains:</font>
+					<script type="text/javascript">
+					var t = 60
+					setInterval("refer()",1000);
+					function refer(){
+						if(t==0){
+							document.getElementById("counter").innerHTML="Done!";
+						}else{
+							mins=0;secs=0;amount=t;out="";
+
+							mins=Math.floor(amount/60);
+							amount=amount%60;
+
+							secs=Math.floor(amount);
+
+							out += mins +" "+((mins==1)?"min":"mins")+", ";
+							out += secs +" "+((secs==1)?"sec":"secs")+", ";
+							out = out.substr(0,out.length-2);
+							document.getElementById("counter").innerHTML=out;
+							t--;
+						}
+					}
+					</script>
+					<div id="counter"></div>
+					{% else %}
+					<font size="3">Preheating time remains:</font>
+					<font size="3">Done!</font>
+					{% endif %}
+				</div>
+
+				<div style="float:left;;min-height:1px;width:50%;margin:0px;padding:0px;">
+					{% if cookingIdx<3 %}
+					<form action="{{ url_for('cooking') }}" method=post>
+						<input type="submit" id = "cooking" name = "command"data-theme="e" data-corners="true" data-inline="false" data-mini="true" data-shadow="true" data-transition="none" value="cooking">
+					</form>
+					{% else %}
+					<font size="3"> Cooking time remains:</font>
+					<script type="text/javascript">
+					var t_cooking = 300
+					setInterval("refer_cooking()",1000);
+					function refer_cooking(){
+						if(t_cooking==0){
+							document.getElementById("counter_cooking").innerHTML="Done!";
+						}else{
+							mins=0;secs=0;amount=t_cooking;out="";
+
+							mins=Math.floor(amount/60);
+							amount=amount%60;
+
+							secs=Math.floor(amount);
+
+							out += mins +" "+((mins==1)?"min":"mins")+", ";
+							out += secs +" "+((secs==1)?"sec":"secs")+", ";
+							out = out.substr(0,out.length-2);
+							document.getElementById("counter_cooking").innerHTML=out;
+							t_cooking--;
+						}
+					}
+					</script>
+					<div id="counter_cooking"></div>
+					{% endif %}
+				</div>
+			</div>
+
+			<p></p>
+
+			<form>
+				<fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+					<legend>Please rate your dining experience</legend>
+					<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value="on" checked="checked">
+					<label for="radio-choice-t-6a">One</label>
+					<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
+					<label for="radio-choice-t-6b">Two</label>
+					<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value="other">
+					<label for="radio-choice-t-6c">Three</label>
+					<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6d" value="other">
+					<label for="radio-choice-t-6d">Fore</label>
+					<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6e" value="other">
+					<label for="radio-choice-t-6e">Five</label>
+				</fieldset>
+			</form>
+		</div>
+
+		<!--end content-->
+		<div data-role="panel" id="page3" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;" data-theme="a" data-animate="false" data-display="reveal" data-position="left">
+			<div class="ui-body ui-body-e " style="margin:auto;padding:0px;background-repeat:repeat repeat;">
+				<div style="overflow:auto">
+					<div style="float:left;min-height:1px;width:30%;margin:0px;padding:0px;">
+						<a class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-notext" name="text-user" id="text-user" data-inline="true" href="http://{{server_ip}}:5000/account">User</a><!--href="index.html"-->
+					</div>
+					<div style="float:left;;min-height:1px;width:70%;margin:0px;padding:0px;">
+						<div style="text-align:left;color:#fa6800;font-size:xx-large;font-weight:normal;font-style:normal;margin:0px;padding:0px;">{{user.nickname}}</div>
+					</div>
+				</div>
+				<ul data-role="listview">
+					<li><a href = "http://{{server_ip}}:5000/menu">Chef Today</a></li>
+					<li><a href = "#">Pot Status</a></li>
+					<li><a href = "#">Shop Nearby</a></li>
+					<li><a href = "#">My Favorite</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

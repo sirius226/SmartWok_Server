@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Cooking</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; width=device-width" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/jqm_1.4.2/jquery.mobile.theme-1.4.2.min.css"/>
+    <link rel="stylesheet" href="css/jqm_1.4.2/jquery.mobile.icons-1.4.2.min.css"/>
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css"/>
+    <link rel="stylesheet" href="css/mobijq.css"/>
+    <link rel="stylesheet" href="css/my.css"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/jquery.mobijq.min.js"></script>
+    <script src="js/my.js"></script>-->
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.theme-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.icons-1.4.3.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/jquery.mobile.structure-1.4.3.min.css')}}" type="text/css" />
+    <script src="static/js/jquery-1.11.1.min.js"></script>
+    <script src="static/js/jquery.mobile-1.4.3.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/styles.css')}}" type="text/css" />
+  </head>
+  <body>
+    <div data-role="page" id="page2" data-title="Account" data-url="{{ url_for('account') }}" data-theme="e" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;">
+      <div data-role="header" data-theme="a" data-fullscreen="false" data-position="" data-tap-toggle="true" data-track-persistent-toolbars="true">
+        <a class="ui-btn-auto" data-theme="b" data-icon="bars" data-iconpos="notext" data-transition="none" href="#page3">Button</a>
+        <div style="background-repeat:repeat repeat;height:40px;text-align:center;overflow:hidden;float:$float">
+          <a href="">
+            <img src="{{url_for('static',filename = 'images/icon.png')}}" style="height:40px;text-align:center;margin:0px;padding:0px;"/>
+          </a>
+        </div>
+      </div>
+      <div role="main" class="ui-content" style="margin:0px;padding:1em;">
+        <div style="overflow:auto">
+          <div style="float:left;width:50%;min-height:1px;width:50%;margin:0px;padding:0px;">
+            <div style="background-repeat:repeat repeat;text-align:center;overflow:hidden;float:$float">
+              <a href="http://{{server_ip}}:5000/menu">
+                <img id="aa" src="{{url_for('static',filename = 'images/Restaurant-icon.png')}}" style="width:70%;text-align:center;margin:0px;padding:0px;"/>
+              </a>
+            </div>
+          </div>
+          <div style="float:left;width:50%;min-height:1px;width:50%;margin:0px;padding:0px;">
+            <div style="background-repeat:repeat repeat;text-align:center;overflow:hidden;float:$float">
+              <a href="">
+                <img src="{{url_for('static',filename = 'images/cooking_icon.png')}}" style="width:70%;text-align:center;margin:0px;padding:0px;"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div style="overflow:auto">
+          <div style="float:left;width:50%;min-height:1px;width:50%;margin:30px 0 0 0;padding:0px;">
+            <div style="background-repeat:repeat repeat;text-align:center;overflow:hidden;float:$float">
+              <a href="http://{{server_ip}}:5000/shopping">
+                <img src="{{url_for('static',filename = 'images/Cart-icon.png')}}" style="width:70%;text-align:center;margin:0px;padding:0px;"/>
+              </a>
+            </div>
+          </div>
+          <div style="float:left;width:50%;min-height:1px;width:50%;margin:30px 0 0 0;padding:0px;">
+            <div style="background-repeat:repeat repeat;text-align:center;overflow:hidden;float:$float">
+              <a href="http://{{server_ip}}:5000/uploading">
+                <img src="{{url_for('static',filename = 'images/Favourite-icon.png')}}" style="width:70%;text-align:center;margin:0px;padding:0px;"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div data-role="controlgroup" data-theme="a" data-corners="true" data-mini="false" data-shadow="false" data-type="" style="text-align:center;">
+          <a data-role="button" data-theme="a" data-corners="true" data-inline="false" data-mini="false" data-shadow="true" data-icon="heart" data-iconpos="left" data-transition="none" href="">Favorite</a>
+          <a data-role="button" data-theme="a" data-corners="true" data-inline="false" data-mini="false" data-shadow="true" data-icon="camera" data-iconpos="left" data-transition="none" href="">Photos</a>
+          <a data-role="button" data-theme="a" data-corners="true" data-inline="false" data-mini="false" data-shadow="true" data-icon="phone" data-iconpos="left" data-transition="none" href="">Contact</a>
+        </div>
+      </div>
+      <div data-role="panel" id="page3" style="background-image:url({{url_for('static',filename = 'images/background.jpg')}});min-height:100%; background-repeat:repeat repeat;" data-theme="a" data-animate="false" data-display="reveal" data-position="left">
+        <div class="ui-body ui-body-e " style="margin:auto;padding:0px;background-repeat:repeat repeat;">
+          <div style="overflow:auto">
+            <div style="float:left;min-height:1px;width:30%;margin:0px;padding:0px;">
+              <a class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-notext" name="text-user" id="text-user" data-inline="true" href="http://{{server_ip}}:5000/account">User</a><!--href="index.html"-->
+            </div>
+            <div style="float:left;;min-height:1px;width:70%;margin:0px;padding:0px;">
+              <div style="text-align:left;color:#fa6800;font-size:xx-large;font-weight:normal;font-style:normal;margin:0px;padding:0px;">{{user.nickname}}</div>
+            </div>
+          </div>
+          <ul data-role="listview">
+            <li><a href = "http://{{server_ip}}:5000/menu">Chef Today</a></li>
+            <li><a href = "#">Pot Status</a></li>
+            <li><a href = "#">Shop Nearby</a></li>
+            <li><a href = "#">My Favorite</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
