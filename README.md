@@ -1,7 +1,21 @@
-Flasky
-======
+SmartWok
+========
 
-This repository contains the source code examples for my O'Reilly book [Flask Web Development](http://www.flaskbook.com).
+This repository contains the source code for testing SmartWok.
 
-The commits and tags in this repository were carefully created to match the sequence in which concepts are presented in the book. Please read the section titled "How to Work with the Example Code" in the book's preface for instructions.
+Creating Virtual Environments:
+$sudo apt-get install python-virtualenv
+$cd SmartWok_Server
+$virtualenv venv
+$. venv/bin/activate
+
+Database Migration:
+$python  manage.py  db  upgrade
+
+Install flask and extensions:
+$pip install -r requirements.txt
+
+Start the server:
+$python  manage.py runserver
+
 
