@@ -8,7 +8,7 @@
     <div id="main-container" class="container">
     <!-- Breadcrumb Starts -->
       <ol class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
+        <li><a href= {{ url_for('main.index') }} >Home</a></li>
         <li class="active">Sign in</li>
       </ol>
     <!-- Breadcrumb Ends -->
@@ -54,16 +54,16 @@
               </div>
               <div class="panel-body">
                 <a href="">
-                  <img src={{ url_for('static', filename='img/google.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
+                  <img src={{ url_for('static', filename='images/openid/google.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
                 </a>
                 <a href="">
-                  <img src={{ url_for('static', filename='img/aol.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
+                  <img src={{ url_for('static', filename='images/openid/aol.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
                 </a>
                 <a href="">
-                  <img src={{ url_for('static', filename='img/yahoo.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
+                  <img src={{ url_for('static', filename='images/openid/yahoo.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
                 </a>
                 <a href="">
-                  <img src={{ url_for('static', filename='img/flickr.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
+                  <img src={{ url_for('static', filename='images/openid/flickr.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
                 </a>
 
               </div>

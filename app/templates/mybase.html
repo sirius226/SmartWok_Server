@@ -7,12 +7,50 @@
     <title>{% block title %}{% endblock title %}</title>
 
     {%- block metas %}
+    <meta charset="utf-8">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
     {%- endblock metas %}
 
     {%- block styles %}
-    <!-- Bootstrap -->
-    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet" media="screen">
+    
+    <!-- Bootstrap Core CSS -->
+    <link href={{ url_for('static', filename='css/bootstrap.min.css', _external=True) }} rel="stylesheet">
+    <!-- Google Web Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <!-- CSS Files -->
+    <link href={{ url_for('static', filename='font-awesome/css/font-awesome.min.css', _external=True) }} rel="stylesheet">
+    <link href={{ url_for('static', filename='css/style.css', _external=True) }} rel="stylesheet">
+    <link href={{ url_for('static', filename='css/responsive.css', _external=True) }} rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+        <script src="static/js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.static/js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Fav and touch icons -->
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href={{ url_for('static', filename='images/fav-144.html', _external=True) }} >
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href={{ url_for('static', filename='images/fav-114.html', _external=True) }} >
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href={{ url_for('static', filename='images/fav-72.html', _external=True) }} >
+    <link rel="apple-touch-icon-precomposed" href={{ url_for('static', filename='images/fav-57.html', _external=True) }} >
+    <link rel="shortcut icon" href={{ url_for('static', filename='images/fav.html', _external=True) }} >
+
+
+
     {%- endblock styles %}
     {%- endblock head %}
   </head>
@@ -26,8 +64,13 @@
     {%- endblock footer %}
 
     {% block scripts %}
-    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
-    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    <!-- JavaScript Files -->   
+    <script src={{ url_for('static', filename='js/jquery-1.11.1.min.js', _external=True) }}></script>
+    <script src={{ url_for('static', filename='js/jquery-migrate-1.2.1.min.js', _external=True) }}></script>
+    <script src={{ url_for('static', filename='js/bootstrap.min.js', _external=True) }}></script>
+    <script src={{ url_for('static', filename='js/bootstrap-hover-dropdown.min.js', _external=True) }}></script>
+    <script src={{ url_for('static', filename='js/jquery.magnific-popup.min.js', _external=True) }}></script>
+    <script src={{ url_for('static', filename='js/custom.js', _external=True) }}></script>
     {%- endblock scripts %}
     {%- endblock body %}
   </body>

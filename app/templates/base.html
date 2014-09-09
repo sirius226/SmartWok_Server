@@ -1,50 +1,8 @@
 {% extends "mybase.html" %}
-
 {% block title %}SmartWok{% endblock %}
 
 {% block head %}
-
-
-	<meta charset="utf-8">
-	<!--[if IE]>
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-	<![endif]-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	
-	<!-- Bootstrap Core CSS -->
-	<link href={{ url_for('static', filename='css/bootstrap.min.css', _external=True) }} rel="stylesheet">
-	
-	<!-- Google Web Fonts -->
-	<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-	
-	<!-- CSS Files -->
-	<link href={{ url_for('static', filename='font-awesome/css/font-awesome.min.css', _external=True) }} rel="stylesheet">
-	<link href={{ url_for('static', filename='css/style.css', _external=True) }} rel="stylesheet">
-	<link href={{ url_for('static', filename='css/responsive.css', _external=True) }} rel="stylesheet">
-
-
-	<!--[if lt IE 9]>
-		<script src="static/js/ie8-responsive-file-warning.js"></script>
-	<![endif]-->
-	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.static/js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
-	<!-- Fav and touch icons -->
-	
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href={{ url_for('static', filename='images/fav-114.html', _external=True) }} >
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href={{ url_for('static', filename='/images/fav-72.html', _external=True) }} >
-	<link rel="apple-touch-icon-precomposed" href={{ url_for('static', filename='images/fav-57.html', _external=True) }} >
-	<link rel="shortcut icon" href={{ url_for('static', filename='images/fav.html', _external=True) }} >
-	
-
+	{{ super() }}
 {% endblock %}	
 
 {% block navbar %}
@@ -58,7 +16,7 @@
 							<div class="header-links">
 								<ul class="nav navbar-nav pull-left">
 									<li>
-										<a href="index.html">
+										<a href= {{ url_for('main.index') }} >
 											<i class="fa fa-home" title="Home"></i>
 											<span class="hidden-sm hidden-xs">
 												Home
@@ -74,14 +32,6 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
-											<i class="fa fa-user" title="My Account"></i>
-											<span class="hidden-sm hidden-xs">
-												My Account
-											</span>
-										</a>
-									</li>
-									<li>
 										<a href="cart.html">
 											<i class="fa fa-shopping-cart" title="Shopping Cart"></i>
 											<span class="hidden-sm hidden-xs">
@@ -90,33 +40,44 @@
 										</a>
 									</li>
 									<li>
+										{% if current_user.is_authenticated() %}
+										<a href={{ url_for('auth.logout') }}>
+											<i class="fa fa-unlock" title="Logout"></i>
+											<span class="hidden-sm hidden-xs">
+												Logout
+											</span>
+										</a>
+										{% else %}
 										<a href={{ url_for('auth.login') }}>
-											<i class="fa fa-unlock" title="Login"></i>
+											<i class="fa fa-lock" title="Login"></i>
 											<span class="hidden-sm hidden-xs">
 												Login
 											</span>
+										{% endif %}
 										</a>
 									</li>
+
 								</ul>
 							</div>
 						</div>
 					<!-- Header Links Ends -->
-					<!-- Currency & Languages Starts -->
+					<!-- Account & Languages Starts -->
 						<div class="col-sm-4 col-xs-12">
 							<div class="pull-right">
-							<!-- Currency Starts -->
+							<!-- Account Starts -->
 								<div class="btn-group">
 									<button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-										Currency
-										<i class="fa fa-caret-up"></i>
+										<i class="fa fa-user"></i>	
+											My Account
+										<i class="fa fa-caret-down"></i>
 									</button>
 									<ul class="pull-right dropdown-menu">
-										<li><a tabindex="-1" href="#">Pound </a></li>
-										<li><a tabindex="-1" href="#">US Dollar</a></li>
-										<li><a tabindex="-1" href="#">Euro</a></li>
+										<li><a tabindex="-1" href= {{ url_for('auth.change_password') }} >Change Password</a></li>
+										<li><a tabindex="-1" href= {{ url_for('auth.change_email_request') }}>Change Email</a></li>
+										<li><a tabindex="-1" href= "#"> My Profile </a></li>
 									</ul>
 								</div>
-							<!-- Currency Ends -->
+							<!-- Account Ends -->
 							<!-- Languages Starts -->
 								<div class="btn-group">
 									<button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
@@ -128,14 +89,14 @@
 											<a tabindex="-1" href="#">English</a>
 										</li>
 										<li>
-											<a tabindex="-1" href="#">French</a>
+											<a tabindex="-1" href="#">Chinese</a>
 										</li>
 									</ul>
 								</div>
 							<!-- Languages Ends -->
 							</div>
 						</div>
-					<!-- Currency & Languages Ends -->											
+					<!-- Account & Languages Ends -->											
 				</div>
 			</div>
 		<!-- Header Top Ends -->
@@ -147,7 +108,7 @@
 					<!-- Logo Starts -->
 						<div class="col-md-6">
 							<div id="logo">
-								<a href="index.html"><img src={{ url_for('static', filename='images/swlogo.png', _external=True) }} title="Smart Wok" alt="Smart Wok" class="img-responsive" /></a>
+								<a href= {{ url_for('main.index') }} ><img src={{ url_for('static', filename='images/swlogo.png', _external=True) }} title="Smart Wok" alt="Smart Wok" class="img-responsive" /></a>
 							</div>
 						</div>
 					<!-- Logo Starts -->
@@ -198,11 +159,11 @@
 				<!-- Navbar Cat collapse Starts -->
 					<div class="collapse navbar-collapse navbar-cat-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="category-list.html">Spices &amp; Herbs</a></li>
-							<li><a href="category-list.html">Herb Blends</a></li>
-							<li><a href="category-list.html">Seasonings</a></li>
-							<li><a href="category-list.html">Salt Free Spices</a></li>
-							<li><a href="category-list.html">Sambar Powders</a></li>
+							<li><a href="category-list.html">Features</a></li>
+							<li><a href="category-list.html">Cooking</a></li>
+							<li><a href="category-list.html">Shopping</a></li>
+							<li><a href="category-list.html">Share</a></li>
+							<li><a href="category-list.html">Profile</a></li>
 						</ul>
 					</div>
 				<!-- Navbar Cat collapse Ends -->
@@ -319,13 +280,5 @@
 	<!-- Footer Section Ends -->
 {% endblock %}
 {% block scripts %}
-{{ super() }}
-	{{ moment.include_moment() }}
-	<!-- JavaScript Files -->	
-	<script src={{ url_for('static', filename='js/jquery-1.11.1.min.js', _external=True) }}></script>
-	<script src={{ url_for('static', filename='js/jquery-migrate-1.2.1.min.js', _external=True) }}></script>
-	<script src={{ url_for('static', filename='js/bootstrap.min.js', _external=True) }}></script>
-	<script src={{ url_for('static', filename='js/bootstrap-hover-dropdown.min.js', _external=True) }}></script>
-    <script src={{ url_for('static', filename='js/jquery.magnific-popup.min.js', _external=True) }}></script>
-	<script src={{ url_for('static', filename='js/custom.js', _external=True) }}></script>
+	{{ super() }}
 {% endblock %}	
