@@ -4,54 +4,75 @@
 {% block title %}SmartWok - Login{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <h1>Sign in</h1>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-4">
-      <h4>Sign in with your SmartWok account</h4>
-      <div class="row">
-        <div class="col-md-10">
-          {{ wtf.quick_form(form) }}
-          <br>      
-          <p>
-            Forgot your password?
-            <a href="{{ url_for('auth.password_reset_request') }}">Click here to reset it</a>
-            .
-          </p>
-          <p>
-            New user?
-            <a href="{{ url_for('auth.register') }}">Click here to register</a>
-            .
-          </p>
+  <!-- Main Container Starts -->
+    <div id="main-container" class="container">
+    <!-- Breadcrumb Starts -->
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Sign in</li>
+      </ol>
+    <!-- Breadcrumb Ends -->
+    <!-- Main Heading Starts -->
+      <h2 class="main-heading">
+        Login 
+      </h2>
+    <!-- Main Heading Ends -->
+    <!-- Login Form Section Starts -->
+      <section class="login-area">
+        <div class="row">
+          <div class="col-sm-6">
+          <!-- Login Panel Starts -->
+            <div class="panel panel-smart">
+              <div class="panel-heading">
+                <h3 class="panel-title">Sign in with your SmartWok account</h3>
+              </div>
+              <div class="panel-body">
+              {{ wtf.quick_form(form) }}
+              <br>              
+              <p>
+                Forgot your password?
+                <a href="{{ url_for('auth.password_reset_request') }}">Click here to reset it</a>
+                .
+              </p>
+              <p>
+                New user?
+                <a href="{{ url_for('auth.register') }}">Click here to register</a>
+                .
+              </p>
+              <!-- Login Form Ends -->
+              </div>
+            </div>
+          <!-- Login Panel Ends -->
+          </div>
+          <div class="col-sm-6">
+          <!-- Login Panel Starts -->
+            <div class="panel panel-smart">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  Sign up with your Social Network account
+                </h3>
+              </div>
+              <div class="panel-body">
+                <a href="">
+                  <img src={{ url_for('static', filename='img/google.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
+                </a>
+                <a href="">
+                  <img src={{ url_for('static', filename='img/aol.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
+                </a>
+                <a href="">
+                  <img src={{ url_for('static', filename='img/yahoo.png', _external=True) }} class="img-polaroid" style="margin:4px;" />              
+                </a>
+                <a href="">
+                  <img src={{ url_for('static', filename='img/flickr.png', _external=True) }} class="img-polaroid" style="margin:4px;" />             
+                </a>
+
+              </div>
+            </div>
+          <!-- Login Panel Ends -->
+          </div>
         </div>
-      </div>
+      </section>
+    <!-- Login Form Section Ends -->
     </div>
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-4">
-      <h4>Sign up with your Social Network account</h4>
-      <div class="row">
-        <div class="col-md-11">   
-          <a href=""><img src={{ url_for('static', filename='img/google.png', _external=True) }} class="img-polaroid" style="margin:4px;" /></a>
-          <a href=""><img src={{ url_for('static', filename='img/aol.png', _external=True) }} class="img-polaroid" style="margin:4px;" /></a>
-          <a href=""><img src={{ url_for('static', filename='img/yahoo.png', _external=True) }} class="img-polaroid" style="margin:4px;" /></a>
-          <a href=""><img src={{ url_for('static', filename='img/flickr.png', _external=True) }} class="img-polaroid" style="margin:4px;" /></a>
-      <p>
-          New user?
-          <a href="{{ url_for('auth.register') }}">Click here to register</a>
-        .
-        </p>
-      </div>
-    </div>
-    <div class="col-md-1">
-    </div>
-  </div>
-</div>
-
-
-
+  <!-- Main Container Ends -->
 {% endblock %}

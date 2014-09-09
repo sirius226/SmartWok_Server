@@ -4,10 +4,33 @@
 {% block title %}SmartWok - Register{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <h1>Register</h1>
+<!-- Main Container Starts -->
+<div id="main-container" class="container">
+	<!-- Breadcrumb Starts -->
+	<ol class="breadcrumb">
+		<li>
+			<a href="index.html">Home</a>
+		</li>
+		<li class="active">Register</li>
+	</ol>
+	<!-- Breadcrumb Ends -->
+	<!-- Main Heading Starts -->
+	<h2 class="main-heading">Register</h2>
+	<!-- Main Heading Ends -->
+	<!-- Register Form Section Starts -->
+	<section class="login-area">
+		<div class="row">
+			<div class="col-sm-6">
+				<!-- Login Panel Starts -->
+				<div class="panel panel-smart">
+					<div class="panel-body">{{ wtf.quick_form(form) }}</div>
+					<br>
+				</div>
+				<!-- Login Panel Ends -->
+			</div>
+		</div>
+	</section>
+	<!-- Register Form Section Ends -->
 </div>
-<div class="col-md-4">
-    {{ wtf.quick_form(form) }}
-</div>
+<!-- Main Container Ends -->
 {% endblock %}
