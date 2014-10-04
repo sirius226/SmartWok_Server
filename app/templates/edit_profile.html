@@ -1,13 +1,43 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Flasky - Edit Profile{% endblock %}
+{% block title %}SmartWok - Profile - Edit{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <h1>Edit Your Profile</h1>
+<!-- Main Container Starts -->
+<div id="main-container" class="container">
+    <!-- Breadcrumb Starts -->
+    <ol class="breadcrumb">
+        <li>
+            <a href= {{ url_for('main.index') }} >Home</a>
+        </li>
+        <li>
+            <a href="{{ url_for('main.user', username=current_user.username) }}"> User Profile </a>
+        </li>
+        <li class="active">Edit Profile</li>
+    </ol>
+    <!-- Breadcrumb Ends -->
+    <!-- Main Heading Starts -->
+    <h2 class="main-heading">Edit Your Profile</h2>
+    <!-- Main Heading Ends -->
+    <!-- Edit Profile Form Section Starts -->
+    <section class="login-area">
+        <div class="row">
+            <div class="col-sm-10">
+                <!-- Profile Panel Starts -->
+                <div class="panel panel-smart">	
+                	{{ wtf.quick_form(form) }}
+                <!-- Profile Panel Ends -->
+            	</div>
+            </div>
+        </div>
+    </section>
+    <!-- Proflile Section Ends -->
 </div>
-<div class="col-md-4">
-    {{ wtf.quick_form(form) }}
-</div>
+<!-- Main Container Ends -->
 {% endblock %}
+
+
+
+
+
