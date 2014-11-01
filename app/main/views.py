@@ -3,7 +3,7 @@ from flask.ext.login import login_required, current_user
 from . import main
 from .forms import EditProfileForm, EditProfileAdminForm
 from .. import db
-from ..models import Role, User
+from ..models import Role, User, Dish
 from ..decorators import admin_required
 
 
@@ -60,3 +60,12 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('edit_profile.html', form=form, user=user)
+
+@main.route('/shopping')
+def shopping():
+    return render_template('shopping.html')
+
+@main.route('/dish/<dish_id>')
+def dish(dish_id):
+    dish = Dish.query.filter_by(id=dish_id).first_or_404()
+    return render_template('dish.html', dish=dish)

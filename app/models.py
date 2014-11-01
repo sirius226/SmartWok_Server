@@ -171,3 +171,20 @@ login_manager.anonymous_user = AnonymousUser
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Dish(db.Model):
+    __tablename__ = 'dishes'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), unique=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    ## author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    description = db.Column(db.Text)
+    price_old = db.Column(db.Float, default = 0)
+    price_new = db.Column(db.Float, default = 0)
+    count_rev = db.Column(db.Integer, default = 0)
+    count_pur = db.Column(db.Integer, default = 0)
+    rating = db.Column(db.Integer, default = 3)
+
+    def path(self):
+        path = 'images/recipe/' + str(self.id)
+        return path
