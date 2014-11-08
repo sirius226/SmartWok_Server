@@ -2,6 +2,21 @@
 SmartWok
 ========
 
+This project has become a group project and tranmitted to Bitbucket.
+
+I simplely do not duplicate every commits which submitted on the Bitbucket.
+
+So here is only a repository for back-ups.
+
+Details to see at:
+
+https://bitbucket.org/honghanlin/smartwok_server
+
+Deployed version to see at:
+
+http://54.165.160.160/featured
+
+
 This repository contains the source code for testing SmartWok.
 
 ###1.  Setting up development environment###
