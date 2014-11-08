@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Smart Cooking Rating</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>  
+  <!-- include CSS & JS files -->  
+  <!-- CSS file -->  
+  <link rel="stylesheet" type="text/css" href="jRating.jquery.css" media="screen" />  
+  <!-- jQuery files -->  
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jRating.jquery.js"></script>
+  <!-- JS to add -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $(".basic").jRating();
+    });
+  </script>
+
+  </head>
+  <body>
+    <!-- basic exemple -->    
+    <div class="basic" data-average="12" data-id="1"></div>
+    <div class="jStar" style="width: 115px; height: 20px; top: -40px; background: icons/stars.png repeat-x;"></div>
+  </body>
+</html>

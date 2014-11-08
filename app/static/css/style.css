@@ -131,7 +131,7 @@ hr{
 /* Main Header & Search Styles Starts */
 
 	.main-header{
-		padding:25px 0;
+		padding:25px 25px;
 	}
 		#search{
 			margin:12px 0 0 0;

@@ -16,7 +16,7 @@
 							<div class="header-links">
 								<ul class="nav navbar-nav pull-left">
 									<li>
-										<a href= {{ url_for('main.index') }} >
+										<a href= {{ url_for('main.featured') }} >
 											<i class="fa fa-home" title="Home"></i>
 											<span class="hidden-sm hidden-xs">
 												Home
@@ -74,7 +74,12 @@
 									<ul class="pull-right dropdown-menu">
 										<li><a tabindex="-1" href= {{ url_for('auth.change_password') }} >Change Password</a></li>
 										<li><a tabindex="-1" href= {{ url_for('auth.change_email_request') }}>Change Email</a></li>
-										<li><a tabindex="-1" href= "#"> My Profile </a></li>
+										{% if current_user.is_authenticated() %}
+											<li><a tabindex="-1" href= {{ url_for('main.user', username=current_user.username) }}> My Profile </a></li>
+										{% else %}
+											<li><a tabindex="-1" href= {{ url_for('auth.login') }}> My Profile </a></li>
+										{% endif %}
+										
 									</ul>
 								</div>
 							<!-- Account Ends -->
@@ -113,7 +118,7 @@
 						</div>
 					<!-- Logo Starts -->
 					<!-- Search Starts -->
-						<div class="col-md-3">
+						<div class="col-md-5">
 							<div id="search">
 								<div class="input-group">
 								  <input type="text" class="form-control input-lg" placeholder="Search">
@@ -127,7 +132,7 @@
 						</div>
 					<!-- Search Ends -->
 					<!-- Shopping Cart Starts -->
-						<div class="col-md-3">
+<!--						<div class="col-md-3">
 							<div id="cart" class="btn-group btn-block">
 								<button type="button" data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle">
 									<i class="fa fa-shopping-cart"></i>
@@ -142,7 +147,7 @@
 								</ul>
 							</div>
 						</div>
-					<!-- Shopping Cart Ends -->
+-->					<!-- Shopping Cart Ends -->
 					</div>
 				</div>
 			<!-- Main Header Ends -->
@@ -159,12 +164,17 @@
 				<!-- Navbar Cat collapse Starts -->
 					<div class="collapse navbar-collapse navbar-cat-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="category-list.html">Features</a></li>
+<!--							<li><a href="category-list.html">Featured</a></li>
 							<li><a href="category-list.html">Cooking</a></li>
-							<li><a href="category-list.html">Shopping</a></li>
+							<li><a href= {{ url_for('main.shopping') }}>Shopping</a></li>
 							<li><a href="category-list.html">Share</a></li>
 							<li><a href="category-list.html">Profile</a></li>
-							<li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
+							<li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>-->
+							<li><a href= {{ url_for('main.index') }}>Featured</a></li>
+							<li><a href= {{ url_for('main.shopping') }}>Shopping</a></li>
+							{% if current_user.is_authenticated() %}
+							<li><a href= {{ url_for('main.createarecipe') }}>Create a Recipe</a></li>
+							{% endif %}
 						</ul>
 					</div>
 				<!-- Navbar Cat collapse Ends -->
@@ -247,16 +257,16 @@
 						<div class="col-md-4 col-sm-12 last">
 							<h5>Contact Us</h5>
 							<ul>
-								<li>My Company</li>
+								<li>Tech-No-Logic Corp</li>
 								<li>
-									1247 LB Nagar Road, Hyderabad, Telangana - 35
+									3 Homer St, Worcester, MA
 								</li>
 								<li>
-									Email: <a href="#">info@demolink.com</a>
+									Email: <a href="#">hanlin.hong@tech-no-logic.com</a>
 								</li>								
 							</ul>
 							<h4 class="lead">
-								Tel: <span>1(234) 567-9842</span>
+								Tel: <span>1(774) 641-1711</span>
 							</h4>
 						</div>
 					<!-- Contact Us Ends -->
@@ -270,7 +280,7 @@
 				<div class="container">
 				<!-- Starts -->
 					<p class="pull-left">
-						&nbsp; 2014 Spice Shoppe Stores. Bootstrap Layout All Rights Reserved. Designed By <a href="http://sainathchillapuram.com/">Sainath Chillapuram</a>
+						&nbsp; 2014 SmartWok. Designed By Chen Li, Xianchao Long and Hanlin Hong.</a>
 					</p>
 				<!-- Ends -->
 				</div>

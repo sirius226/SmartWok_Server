@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}SmartWok{% endblock %}
+
+{% block page_content %}
+	<!-- Slider Section Starts -->
+		<div class="slider">
+			<div class="container">
+				<div id="main-carousel" class="carousel slide" data-ride="carousel">
+					<!-- Wrapper For Slides Starts -->
+						<div class="carousel-inner">
+							<div class="item active" align="center">
+								<img src= {{ url_for('static', filename='images/slider-imgs/banner01.jpg', _external=True) }} alt="Slider" class="img-responsive" />
+							</div>
+							<div class="item" align="center">
+								<img src= {{ url_for('static', filename='images/slider-imgs/banner02.jpg', _external=True) }} alt="Slider" class="img-responsive" /> 
+							</div>
+							<div class="item" align="center">
+								<img src= {{ url_for('static', filename='images/slider-imgs/banner03.jpg', _external=True) }} alt="Slider" class="img-responsive" />
+							</div>
+						</div>
+					<!-- Wrapper For Slides Ends -->
+					<!-- Controls Starts -->
+						<a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#main-carousel" role="button" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+					<!-- Controls Ends -->
+				</div>				
+			</div>
+		</div>
+	<!-- Slider Section Ends -->
+	<!-- 3 Column Banners Starts -->
+		<div class="col3-banners">
+			<div class="container">
+				<ul class="row list-unstyled">
+					<li class="col-sm-4">
+						<img src= {{ url_for('static', filename='images/banners/3col-1.png', _external=True) }} alt="banners" class="img-responsive" />
+					</li>
+					<li class="col-sm-4">
+						<img src= {{ url_for('static', filename='images/banners/3col-2.png', _external=True) }} alt="banners" class="img-responsive" />
+					</li>
+					<li class="col-sm-4">
+						<img src= {{ url_for('static', filename='images/banners/3col-3.png', _external=True) }} alt="banners" class="img-responsive" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	<!-- 3 Column Banners Ends -->
+	<!-- Latest Products Starts -->
+		
+	<!-- 2 Column Banners Starts -->
+		<div class="col2-banners">
+			<div class="container">
+				<ul class="row list-unstyled">
+					<li class="col-sm-4">
+						<img src= {{ url_for('static', filename='images/banners/2col-banner1.jpg', _external=True) }} alt="banners" class="img-responsive" />
+					</li>
+					<li class="col-sm-8">
+						<img src= {{ url_for('static', filename='images/banners/2col-banner2.jpg', _external=True) }} alt="banners" class="img-responsive" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	<!-- 2 Column Banners Ends -->
+
+	<!-- Specials Products Starts -->
+		<section class="products-list">			
+			<div class="container">
+			<!-- Heading Starts -->
+<!--				<h2 class="product-head">Specials Products</h2>
+-->			<!-- Heading Ends -->
+			<!-- Products Row Starts -->
+				<div class="row">
+				<!-- Product #1 Starts -->
+				{% for dish in feature[:4] %}	
+					<div class="col-md-3 col-sm-6">
+						<div class="product-col">
+							<div class="image">
+								<img src= {{ url_for('static', filename=dish.img_path()+ '/dish1s.png', _external=True) }} alt="product" class="img-responsive" />	
+							</div>
+							<div class="caption">
+								<h4>
+									<a href= {{ url_for('main.dish', dish_id = dish.id) }}>{{ dish.name }}</a>
+								</h4>
+								<div class="description">
+									<p>{{ dish.description }} </p>
+								</div>
+								<div class="price">
+									<span class="price-new">${{'%0.2f' %dish.price_new}}</span> 
+									<span class="price-old">${{'%0.2f' %dish.price_old}}</span>
+								</div>
+								<div class="cart-button button-group">
+									<button type="button" title="Wishlist" class="btn btn-wishlist">
+										<i class="fa fa-heart"></i>
+									</button>
+									<button type="button" title="Compare" class="btn btn-compare">
+										<i class="fa fa-bar-chart-o"></i>
+									</button>
+									<button type="button" class="btn btn-cart">
+										Add to cart
+										<i class="fa fa-shopping-cart"></i> 
+									</button>									
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</section>
+		<!-- Specials Products Starts -->
+		<section class="products-list">			
+			<div class="container">
+			<!-- Heading Starts -->
+<!--				<h2 class="product-head">Specials Products</h2>
+-->			<!-- Heading Ends -->
+			<!-- Products Row Starts -->
+				<div class="row">
+				<!-- Product #1 Starts -->
+				{% for dish in feature[4:8] %}	
+					<div class="col-md-3 col-sm-6">
+						<div class="product-col">
+							<div class="image">
+								<img src= {{ url_for('static', filename=dish.img_path()+ '/dish1s.png', _external=True) }} alt="product" class="img-responsive" />	
+							</div>
+							<div class="caption">
+								<h4>
+									<a href= {{ url_for('main.dish', dish_id = dish.id) }}>{{ dish.name }}</a>
+								</h4>
+								<div class="description">
+									<p>{{ dish.description }} </p>
+								</div>
+								<div class="price">
+									<span class="price-new">${{'%0.2f' %dish.price_new}}</span> 
+									<span class="price-old">${{'%0.2f' %dish.price_old}}</span>
+								</div>
+								<div class="cart-button button-group">
+									<button type="button" title="Wishlist" class="btn btn-wishlist">
+										<i class="fa fa-heart"></i>
+									</button>
+									<button type="button" title="Compare" class="btn btn-compare">
+										<i class="fa fa-bar-chart-o"></i>
+									</button>
+									<button type="button" class="btn btn-cart">
+										Add to cart
+										<i class="fa fa-shopping-cart"></i> 
+									</button>									
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</section>
+
+	<!-- Specials Products Ends -->
+{% endblock %}

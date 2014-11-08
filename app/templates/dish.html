@@ -8,40 +8,25 @@
 	<!-- Breadcrumb Starts -->
 	<ol class="breadcrumb">
 		<li>
-			<a href="index.html">Home</a>
+			<a href="index.html">Shopping</a>
 		</li>
 		<li>
-			<a href="category-grid.html">Category</a>
+			<a href="category-grid.html">Recipes</a>
 		</li>
-		<li class="active">Product</li>
+		<li class="active">{{ dish.name }}</li>
 	</ol>
 	<!-- Breadcrumb Ends -->
 	<!-- Product Info Starts -->
 	<div class="row product-info full">
 		<!-- Left Starts -->
 		<div class="col-sm-4 images-block">
-			<a href={{ url_for('static', filename = dish.path() + '/1.jpg', _external=True) }}>
-				<img src= {{ url_for('static', filename = dish.path() + '/1.jpg', _external=True) }} alt="Image" class="img-responsive thumbnail" />
+			<a href={{ url_for('static', filename = dish.img_path() + '/dish1.png', _external=True) }}>
+				<img src= {{ url_for('static', filename = dish.img_path() + '/dish1.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
 			</a>
 			<ul class="list-unstyled list-inline">
 				<li>
-					<a href="images/product-images/big-pimg2.jpg">
-						<img src="images/product-images/thumb1.jpg" alt="Image" class="img-responsive thumbnail" />
-					</a>
-				</li>
-				<li>
-					<a href="images/product-images/big-pimg3.jpg">
-						<img src="images/product-images/thumb2.jpg" alt="Image" class="img-responsive thumbnail" />
-					</a>
-				</li>
-				<li>
-					<a href="images/product-images/big-pimg4.jpg">
-						<img src="images/product-images/thumb3.jpg" alt="Image" class="img-responsive thumbnail" />
-					</a>
-				</li>
-				<li>
-					<a href="images/product-images/big-pimg4.jpg">
-						<img src="images/product-images/thumb4.jpg" alt="Image" class="img-responsive thumbnail" />
+					<a href={{ url_for('static', filename = dish.img_path() + '/nf.png', _external=True) }}>
+						<img src= {{ url_for('static', filename = dish.img_path() + '/nfs.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
 					</a>
 				</li>
 			</ul>
@@ -52,24 +37,47 @@
 			<div class="panel-smart">
 				<!-- Product Name Starts -->
 				<h2>{{ dish.name }}</h2>
+				{% if current_user.is_authenticated() %}
+					<a href= {{ url_for('main.rating') }}> 
+						<button type="button" class="btn btn-wishlist">
+							Rate This				
+							</i>
+						</button>
+					</a>
+				{% else %}
+					<a href= {{ url_for('auth.login') }}> 
+						<button type="button" class="btn btn-wishlist">
+							Rate This				
+							</i>
+						</button>
+					</a>
+				{% endif %}
+				{% if current_user.is_authenticated() %}
+					<a href= {{ url_for('main.cooking') }}> 
+						<button type="button" class="btn btn-cart">
+							Start cooking				
+							</i>
+						</button>
+					</a>
+				{% else %}
+					<a href= {{ url_for('auth.login') }}> 
+						<button type="button" class="btn btn-cart">
+							Start cooking				
+							</i>
+						</button>
+					</a>
+				{% endif %}
+
 				<!-- Product Name Ends -->
 				<hr />
 				<!-- Manufacturer Starts -->
 				<ul class="list-unstyled manufacturer">
 					<li>
-						<span>Brand:</span>
+						<span>Provider:</span>
 						Indian spices
 					</li>
 					<li>
-						<span>Model:</span>
-						SKU012452
-					</li>
-					<li>
-						<span>Reward Points:</span>
-						300
-					</li>
-					<li>
-						<span>Availability:</span> <strong class="label label-danger">Out Of Stock</strong>
+						<span>Availability:</span> <strong class="label label-danger">In Stock</strong>
 					</li>
 				</ul>
 				<!-- Manufacturer Ends -->
@@ -109,13 +117,10 @@
 				<a href="#tab-description">Description</a>
 			</li>
 			<li>
-				<a href="#tab-specification">Specification</a>
+				<a href="#tab-specification">Nutrition Facts</a>
 			</li>
 			<li>
-				<a href="#tab-ainfo">Additional Information</a>
-			</li>
-			<li>
-				<a href="#tab-review">Review</a>
+				<a href="#tab-ainfo">Reviews</a>
 			</li>
 		</ul>
 		<!-- Nav Tabs Ends -->
@@ -124,52 +129,155 @@
 			<!-- Description Starts -->
 			<div class="tab-pane active" id="tab-description">
 				<p>
-					{{ dish.description }}
+					{% include dish.tem_path() %}
 				</p>
 			</div>
 			<!-- Description Ends -->
-			<!-- Specification Starts -->
+			<!-- Nutrition Facts Starts -->
 			<div class="tab-pane" id="tab-specification">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<td colspan="2"> <strong>Name</strong>
+							<td colspan="2"> <strong>Amount Per Serving</strong>
 							</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Name</td>
-							<td>Attribute Specification</td>
+							<td>Calories</td>
+							<td>40</td>
+							<td></td>
 						</tr>
 					</tbody>
-				</table>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<td colspan="2">
-								<strong>Name</strong>
-							</td>
-						</tr>
-					</thead>
 					<tbody>
 						<tr>
-							<td>Name</td>
-							<td>Attribute Specification</td>
+							<td>Calories from Fat</td>
+							<td>4</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Total Fat</td>
+							<td>0.5g</td>
+							<td>1%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Saturated Fat</td>
+							<td>0.1g</td>
+							<td>0%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Trans Fat</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Cholesterol</td>
+							<td>0.0mg</td>
+							<td>0%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Sodium</td>
+							<td>38.3mg</td>
+							<td>2%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Total Carbohydrate</td>
+							<td>7.4g</td>
+							<td>2%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Dietary Fiber</td>
+							<td></td>
+							<td>%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Sugars</td>
+							<td>2.8g</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Potein</td>
+							<td>4.2g</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Vitamin A</td>
+							<td></td>
+							<td>85%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Calcium</td>
+							<td></td>
+							<td>7%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Vitamin C</td>
+							<td></td>
+							<td>220%</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>Iron</td>
+							<td></td>
+							<td>7%</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<!-- Specification Ends -->
-			<!-- Additional Information Starts -->
+			<!-- Nutrition Facts Ends -->
+			<!-- Reviews Starts -->
 			<div class="tab-pane" id="tab-ainfo">
+				<div class="form-group required">
+					<label class="col-sm-2 control-label ratings">Overall Rating</label>
+					<div class="col-sm-10">
+						Bad&nbsp;
+						<input type="radio" name="rating" value="1" />
+						&nbsp;
+						<input type="radio" name="rating" value="2" />
+						&nbsp;
+						<input type="radio" name="rating" value="3" />
+						&nbsp;
+						<input type="radio" name="rating" value="4" />
+						&nbsp;
+						<input type="radio" name="rating" value="5" />
+						&nbsp;Good
+					</div>
+				</div>
 				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					<br></br><b>Reader Rating: 4 out of 5 stars</b> From Richard<br></br>
+Comments: "This recipe is excellent, the taste is truely unforgettable. I love everything about the beef and the way it tastes after it is marinated and cooked to perfection. The crispy flavor of the broccoli makes the Chinese stir fry even more delicious than before."<br></br>
+<b>Reader Rating: 5 out of 5 stars</b> From Michelle<br></br>
+Comments: "My family loved it. I added onions for more flavor, and next time I'll cook in chile oil for a litle more kick." 
 				</p>
 			</div>
-			<!-- Additional Information Ends -->
+			<!-- Reviews Ends -->
 			<!-- Review Starts -->
-			<div class="tab-pane" id="tab-review">
+<!--			<div class="tab-pane" id="tab-review">
 				<form class="form-horizontal">
 					<div class="form-group required">
 						<label class="col-sm-2 control-label" for="input-name">Name</label>
@@ -207,32 +315,33 @@
 					</div>
 				</form>
 			</div>
-			<!-- Review Ends -->
+-->			<!-- Review Ends -->
 		</div>
 		<!-- Tab Content Ends -->
 	</div>
 	<!-- Tabs Ends -->
-	<!-- Related Products Starts -->
+	<!-- Guess You Like Starts -->
 	<div class="product-info-box">
-		<h4 class="heading">Related Products</h4>
+		<h4 class="heading">Guess You Like</h4>
 		<!-- Products Row Starts -->
 		<div class="row">
 			<!-- Product #1 Starts -->
 			<div class="col-md-3 col-sm-6">
 				<div class="product-col">
 					<div class="image">
-						<img src="images/product-images/pimg1.jpg" alt="product" class="img-responsive" />
+						<img src={{ url_for('static', filename = 'images/recipe/show/show1.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
+
 					</div>
 					<div class="caption">
 						<h4>
-							<a href="product.html">Simply Organic Seeds</a>
+							<a href="product.html">Pork with Cucumbers</a>
 						</h4>
 						<div class="description">
 							We are so lucky living in such a wonderful time. Our almost unlimited ...
 						</div>
 						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
+							<span class="price-new">$0.00</span>
+							<span class="price-old">$0.09</span>
 						</div>
 						<div class="cart-button button-group">
 							<button type="button" title="Wishlist" class="btn btn-wishlist">
@@ -254,18 +363,18 @@
 			<div class="col-md-3 col-sm-6">
 				<div class="product-col">
 					<div class="image">
-						<img src="images/product-images/pimg1.jpg" alt="product" class="img-responsive" />
+						<img src={{ url_for('static', filename = 'images/recipe/show/show2.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
 					</div>
 					<div class="caption">
 						<h4>
-							<a href="product.html">Simply Organic Seeds</a>
+							<a href="product.html">Sliced Potato with Pepper</a>
 						</h4>
 						<div class="description">
 							We are so lucky living in such a wonderful time. Our almost unlimited ...
 						</div>
 						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
+							<span class="price-new">$0.00</span>
+							<span class="price-old">$0.09</span>
 						</div>
 						<div class="cart-button button-group">
 							<button type="button" title="Wishlist" class="btn btn-wishlist">
@@ -287,18 +396,18 @@
 			<div class="col-md-3 col-sm-6">
 				<div class="product-col">
 					<div class="image">
-						<img src="images/product-images/pimg1.jpg" alt="product" class="img-responsive" />
+						<img src={{ url_for('static', filename = 'images/recipe/show/show3.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
 					</div>
 					<div class="caption">
 						<h4>
-							<a href="product.html">Simply Organic Seeds</a>
+							<a href="product.html">Ma Po Tofu</a>
 						</h4>
 						<div class="description">
 							We are so lucky living in such a wonderful time. Our almost unlimited ...
 						</div>
 						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
+							<span class="price-new">$0.00</span>
+							<span class="price-old">$0.09</span>
 						</div>
 						<div class="cart-button button-group">
 							<button type="button" title="Wishlist" class="btn btn-wishlist">
@@ -320,18 +429,18 @@
 			<div class="col-md-3 col-sm-6">
 				<div class="product-col">
 					<div class="image">
-						<img src="images/product-images/pimg1.jpg" alt="product" class="img-responsive" />
+						<img src={{ url_for('static', filename = 'images/recipe/show/show4.png', _external=True) }} alt="Image" class="img-responsive thumbnail" />
 					</div>
 					<div class="caption">
 						<h4>
-							<a href="product.html">Simply Organic Seeds</a>
+							<a href="product.html">Hong Shao Rou</a>
 						</h4>
 						<div class="description">
 							We are so lucky living in such a wonderful time. Our almost unlimited ...
 						</div>
 						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
+							<span class="price-new">$0.00</span>
+							<span class="price-old">$0.09</span>
 						</div>
 						<div class="cart-button button-group">
 							<button type="button" title="Wishlist" class="btn btn-wishlist">
@@ -352,7 +461,7 @@
 		</div>
 		<!-- Products Row Ends -->
 	</div>
-	<!-- Related Products Ends -->
+	<!-- Guess You Like Ends -->
 </div>
 <!-- Main Container Ends -->
 {% endblock %}

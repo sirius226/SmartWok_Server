@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}SmartWok - Login{% endblock %}
+
+{% block page_content %}
+  <!-- Main Container Starts -->
+    <div id="main-container" class="container">
+    <table data-role="table" id="movie-table" data-filter="true" data-input="#filterTable-input" class="ui-responsive">
+    <thead>
+        <tr>
+            <th data-priority="1">Rank</th>
+            <th data-priority="persist"></th>
+            <th data-priority="2">Recipes</th>
+            <th data-priority="3">Provider</th>
+	    <th data-priority="4">Reviews</th>
+            <th data-priority="5">Purchase</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>5 Stars</th>
+                <td><a href="" data-rel="external">Beef with Broccoli</a></td>
+                <td><img src="{{url_for('static',filename = 'images/BwB.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>TNL</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>74</td>
+                <td><p style="color:#660000;text-align:right;margin:0px;padding:0px;">Purchased</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">Pepper Steak with Onion</a></td>
+                <td><img src="{{url_for('static',filename = 'images/PSwO.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>TNL</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>64</td>
+                <td><p style="color:#339900;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">Shrimp with Chinese Vegetables</a></td>
+                <td><img src="{{url_for('static',filename = 'images/SwCV.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>TNL</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>87</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">Kung Pao Chicken</a></td>
+                <td><img src="{{url_for('static',filename = 'images/KPC.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>TNL</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>77</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>3 Stars</th>
+                <td><a href="" data-rel="external">番茄炒蛋</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/番茄炒蛋.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>4</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">红烧肉</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/红烧肉.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>6</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4.5 Stars</th>
+                <td><a href="" data-rel="external">红烧鸡翅</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/红烧鸡翅.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>10</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.19</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>5 Stars</th>
+                <td><a href="" data-rel="external">腐竹肉片</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/腐竹肉片.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>5</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.49</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>3.5 Stars</th>
+                <td><a href="" data-rel="external">茄子肉片</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/茄子肉片.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>2</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.29</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">青椒土豆丝</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/青椒土豆丝.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>16</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">Pepper Steak</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/Pepper Steak.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>25</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">麻婆豆腐</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/麻婆豆腐.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>5</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>3 Stars</th>
+                <td><a href="" data-rel="external">黄瓜肉片</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/黄瓜肉片.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>2</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>5 Stars</th>
+                <td><a href="" data-rel="external">HC-Pineapple Chicken</a></td>
+                <td><img src="{{url_for('static',filename = 'images/HC-PC.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Healthy Choice</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>57</td>
+                <td><p style="color:#339900;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">LG-Shrimp Pad Thai</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/LG-Shrimp Pad Thai.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>8</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">$0.09</p></td>
+            </tr>
+            <tr>
+                <th><p style="text-align:center;margin:0px;padding:0px;"/>4 Stars</th>
+                <td><a href="" data-rel="external">MC-Beef with Broccoli Rice</a></td>
+                <td><img src="{{url_for('static',filename = 'images/Mom Taste/MC-Beef with Broccoli Rice.jpg')}}" style="width:30%;text-align:center;margin:0px;padding:0px;"/></td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>Hanlin</td>
+                <td><p style="text-align:center;margin:0px;padding:0px;"/>15</td>
+                <td><p style="color:#FF3300;text-align:right;margin:0px;padding:0px;">Free</p></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+  <!-- Main Container Ends -->
+{% endblock %}

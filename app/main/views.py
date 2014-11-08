@@ -1,4 +1,5 @@
-from flask import render_template, redirect, url_for, abort, flash
+from flask import render_template, redirect, url_for, abort, flash, request,\
+     current_app
 from flask.ext.login import login_required, current_user
 from . import main
 from .forms import EditProfileForm, EditProfileAdminForm
@@ -9,15 +10,28 @@ from ..decorators import admin_required
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('.featured'))
 
+@main.route('/featured')
+def featured():
+    feature = Dish.query.order_by(Dish.count_rev.desc()).limit(8)
+    return render_template('featured.html', feature=feature)
 
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('user.html', user=user)
 
+@main.route('/cooking')
+def cooking():
+    flash('Your recipe is transimitting to your wok!')
+    return render_template('cooking.html')
 
+@main.route('/rating')
+def rating():
+    flash('You can rate the dish here!')
+    return render_template('rating.html')
+    
 @main.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -63,9 +77,22 @@ def edit_profile_admin(id):
 
 @main.route('/shopping')
 def shopping():
-    return render_template('shopping.html')
+    page = request.args.get('page', 1, type=int)
+    pagination = Dish.query.order_by(Dish.id).paginate(
+    page, per_page=current_app.config['SMARTWOK_DISH_PER_PAGE'],
+    error_out=False)
+    dishes = pagination.items
+    return render_template('shopping.html', dishes = dishes, pagination=pagination)
+
+@main.route('/createarecipe')
+def createarecipe():
+    return render_template('createarecipe.html')
 
 @main.route('/dish/<dish_id>')
 def dish(dish_id):
     dish = Dish.query.filter_by(id=dish_id).first_or_404()
     return render_template('dish.html', dish=dish)
+
+
+
+

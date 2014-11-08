@@ -175,16 +175,22 @@ def load_user(user_id):
 class Dish(db.Model):
     __tablename__ = 'dishes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), unique=True)
+    name = db.Column(db.Unicode, unique=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     ## author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    description = db.Column(db.Text)
+    description = db.Column(db.UnicodeText)
     price_old = db.Column(db.Float, default = 0)
     price_new = db.Column(db.Float, default = 0)
     count_rev = db.Column(db.Integer, default = 0)
     count_pur = db.Column(db.Integer, default = 0)
     rating = db.Column(db.Integer, default = 3)
 
-    def path(self):
+    def img_path(self):
         path = 'images/recipe/' + str(self.id)
         return path
+    
+    def tem_path(self):
+        path = '/description/' + str(self.id) +'.html'
+        return path
+
+

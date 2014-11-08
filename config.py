@@ -13,6 +13,7 @@ class Config:
     SMARTWOK_MAIL_SUBJECT_PREFIX = '[SmartWok]'
     SMARTWOK_MAIL_SENDER = 'SmartWok Admin <smartwokmailserver@gmail.com>'
     SMARTWOK_ADMIN = os.environ.get('SMARTWOK_ADMIN')
+    SMARTWOK_DISH_PER_PAGE = 6
 
     @staticmethod
     def init_app(app):
@@ -40,6 +41,5 @@ config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }

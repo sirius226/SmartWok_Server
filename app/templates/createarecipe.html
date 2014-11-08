@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}SmartWok - Login{% endblock %}
+
+{% block head %}
+
+  {{ super() }}
+  <head>
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>SmartWok</title>
+
+  <link href={{ url_for('static', filename='blockly/common.css', _external=True) }} rel="stylesheet">
+  <link href={{ url_for('static', filename='blockly/style.css', _external=True) }} rel="stylesheet">
+
+  <script src={{ url_for('static', filename='blockly/common.js', _external=True) }}></script>
+  <script src={{ url_for('static', filename='blockly/soyutils.js', _external=True) }}></script>
+  <script src={{ url_for('static', filename='blockly/maze.js', _external=True) }}></script>
+
+</head>
+{% endblock %}  
+
+{% block content %}
+  
+  <script type="text/javascript">
+    document.write(mazepage.start({}, null,
+        {lang: BlocklyApps.LANG,
+         level: Maze.LEVEL,
+         skin: Maze.SKIN_ID,
+         langSrc: BlocklyApps.languagePack()}));
+
+  </script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
