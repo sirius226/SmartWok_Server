@@ -2,7 +2,7 @@
 SmartWok
 ========
 
-This project has become a group project and tranmitted to Bitbucket.
+This project has become a group project and transmitted to Bitbucket.
 
 I simplely do not duplicate every commits which submitted on the Bitbucket.
 
